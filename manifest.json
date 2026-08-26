@@ -7,6 +7,7 @@
   "description": "Display Copilot usage and quota in the agents panel widget.",
   "homepage": "https://github.com/wellatleastitried/omarchy-copilot-panel-usage",
   "kinds": ["panel"],
+  "keepLoaded": true,
   "entryPoints": {
     "panel": "ui/main.qml"
   }
