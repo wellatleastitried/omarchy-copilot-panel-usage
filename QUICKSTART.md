@@ -3,45 +3,59 @@
 ## Install
 
 ```bash
-omarchy plugin add https://github.com/dougfour/omarchy-copilot-panel-usage.git --enable
+omarchy plugin add https://github.com/dougfour/omarchy-copilot-panel-usage.git --enable --yes
 ```
 
 That's it! The plugin will:
-1. Start immediately
-2. Run the collector every 5 minutes
-3. Write data to `~/.local/state/omarchy/agents/usage/copilot.json`
-4. Omarchy's agents panel auto-discovers and displays it
+1. Install into `~/.config/omarchy/plugins/dougfour.copilot-panel-usage`
+2. Start immediately (shell auto-loads it)
+3. Run the collector every 5 minutes via QML timer
+4. Write data to `~/.local/state/omarchy/agents/usage/copilot.json`
+5. Omarchy's agents panel auto-discovers and displays it
 
 ## Verify It's Working
 
-Check the state file was created:
-```bash
-cat ~/.local/state/omarchy/agents/usage/copilot.json
-```
+After installation + shell restart, check:
 
-Or run the collector manually:
 ```bash
-python3 ~/.omarchy/plugins/omarchy-copilot-panel-usage/bin/omarchy-agent-usage-copilot
+# Plugin installed and enabled?
+omarchy plugin list | grep copilot
+
+# Data file created?
+ls -la ~/.local/state/omarchy/agents/usage/copilot.json
+
+# Data looks correct?
+cat ~/.local/state/omarchy/agents/usage/copilot.json | jq '{id, name, todaySessions, limits: (.limits | length)}'
 ```
 
 ## See Data in the Panel
 
 Press `Super+A` (or your agents panel shortcut) and look for the Copilot provider.
 
+## Manual Test
+
+Run the collector directly:
+```bash
+python3 ~/.config/omarchy/plugins/dougfour.copilot-panel-usage/bin/omarchy-agent-usage-copilot --write
+```
+
 ## Troubleshooting
 
 **Plugin doesn't show in agent panel?**
 ```bash
-# Check plugin is installed
-omarchy plugin status omarchy-copilot-panel-usage
+# Restart shell to load plugin
+omarchy restart shell
+
+# Check plugin is installed and enabled
+omarchy plugin list | grep copilot
 
 # Manually run collector
-~/.omarchy/plugins/omarchy-copilot-panel-usage/bin/omarchy-agent-usage-copilot --write
+python3 ~/.config/omarchy/plugins/dougfour.copilot-panel-usage/bin/omarchy-agent-usage-copilot --write
 
 # Check output was created
 ls -la ~/.local/state/omarchy/agents/usage/copilot.json
 
-# Verify Omarchy sees it
+# Verify file structure
 cat ~/.local/state/omarchy/agents/usage/copilot.json | jq '.id'  # should be "copilot"
 ```
 
