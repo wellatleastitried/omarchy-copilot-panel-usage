@@ -63,7 +63,8 @@ Item {
 
     lastCollectTime = now
     isCollecting = true
-    collectorProcess.start(["/usr/bin/python3", collectorPath, "--write"])
+    collectorProcess.command = ["/usr/bin/python3", collectorPath, "--write"]
+    collectorProcess.running = true
   }
 
   Process {
