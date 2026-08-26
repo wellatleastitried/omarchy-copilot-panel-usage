@@ -16,6 +16,12 @@ omarchy plugin add https://github.com/wellatleastitried/omarchy-copilot-panel-us
 omarchy plugin remove wellatleastitried.copilot-panel-usage
 ```
 
+## Requirements
+
+- **Python 3.10+**
+- **Copilot CLI** installed with session history at `~/.copilot/session-store.db`
+- **Optional:** Editor OAuth tokens for quota display (VS Code, JetBrains, or copilot.vim plugin)
+
 ## Overview
 
 >Note: This plugin was built from my PR that is open in [Omarchy](https://github.com/basecamp/omarchy/pull/7798). If this PR is merged, this plugin will no longer be supported.
