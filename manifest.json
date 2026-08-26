@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "dougfour.copilot-panel-usage",
+  "id": "wellatleastitried.copilot-panel-usage",
   "name": "Copilot Panel Usage",
   "version": "1.0.0",
-  "author": "dougfour",
-  "description": "Display GitHub Copilot usage and quota in the agents panel widget. Shows token usage by model, active days, and current quota limits.",
-  "homepage": "https://github.com/dougfour/omarchy-copilot-panel-usage",
+  "author": "wellatleastitried",
+  "description": "Display Copilot usage and quota in the agents panel widget.",
+  "homepage": "https://github.com/wellatleastitried/omarchy-copilot-panel-usage",
   "kinds": ["panel"],
   "entryPoints": {
     "panel": "ui/main.qml"
