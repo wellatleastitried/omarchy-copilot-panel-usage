@@ -20,4 +20,4 @@ Data updates every 5 minutes or when you refresh the agents panel.
 
 ## License
 
-[MIT](./LICENSE.md)
+[MIT](./LICENSE)
