@@ -12,7 +12,7 @@ omarchy plugin add https://github.com/wellatleastitried/omarchy-copilot-panel-us
 
 ## Overview
 
->>Note: This plugin was built from my PR that is open in [Omarchy](https://github.com/basecamp/omarchy/pull/7798). If this PR is merged, this plugin will no longer be supported.
+>Note: This plugin was built from my PR that is open in [Omarchy](https://github.com/basecamp/omarchy/pull/7798). If this PR is merged, this plugin will no longer be supported.
 
 Shows token usage by model, active days, and current quota limits. Reads from Copilot CLI's local session store and fetches quota from GitHub's API (requires editor OAuth tokens).
 
