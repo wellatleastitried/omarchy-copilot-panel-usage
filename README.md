@@ -2,12 +2,18 @@
 
 Displays Copilot usage and quota in the Omarchy agents panel.
 
-![Copilot usage inside of Omarchy with Agents Panel](./assets/example.png)
+![Copilot usage inside of Omarchy with Agents Panel](./preview.png)
 
 ## Install
 
 ```bash
 omarchy plugin add https://github.com/wellatleastitried/omarchy-copilot-panel-usage.git --enable
+```
+
+## Uninstall
+
+```bash
+omarchy plugin remove wellatleastitried.copilot-panel-usage
 ```
 
 ## Overview

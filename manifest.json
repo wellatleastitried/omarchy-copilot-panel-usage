@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "wellatleastitried.copilot-panel-usage",
-  "name": "Copilot Panel Usage",
+  "name": "Copilot Usage Panel",
   "version": "1.0.0",
   "author": "wellatleastitried",
   "description": "Display Copilot usage and quota in the agents panel widget.",
