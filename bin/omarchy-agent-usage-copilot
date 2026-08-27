@@ -34,7 +34,7 @@ COPILOT_INTERNAL_URL = f"{GITHUB_API_BASE}/copilot_internal/user"
 COPILOT_EDITOR_CONFIG_DIR = Path("~/.config/github-copilot").expanduser()
 COPILOT_TOKEN_FILES = ("apps.json", "hosts.json", "oauth.json")
 
-QUOTA_PRIORITY = ("premium_interactions", "premium_requests", "chat", "completions")
+QUOTA_PRIORITY = ("premium_requests", "chat", "completions")
 QUOTA_DISPLAY_NAMES = {
   "premium_interactions": "Premium Requests",
   "premium_requests": "Premium Requests",
