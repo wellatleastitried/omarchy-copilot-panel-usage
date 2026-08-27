@@ -36,7 +36,7 @@ COPILOT_TOKEN_FILES = ("apps.json", "hosts.json", "oauth.json")
 
 QUOTA_PRIORITY = ("premium_interactions", "premium_requests", "chat", "completions")
 QUOTA_DISPLAY_NAMES = {
-  "premium_interactions": "AI Credits",
+  "premium_interactions": "Premium Requests",
   "premium_requests": "Premium Requests",
   "chat": "Chat",
   "completions": "Completions",
