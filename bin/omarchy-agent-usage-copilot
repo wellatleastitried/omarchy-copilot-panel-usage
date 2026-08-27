@@ -16,7 +16,9 @@ import argparse
 import datetime as dt
 import json
 import os
+import shutil
 import sqlite3
+import tempfile
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -305,9 +307,15 @@ def main() -> None:
     output_file = output_dir / "copilot.json"
     
     try:
-      fd = os.open(str(output_file), os.O_CREAT | os.O_TRUNC | os.O_WRONLY, 0o644)
-      with os.fdopen(fd, 'w', encoding='utf-8') as f:
-        json.dump(record, f, indent=2)
+      # Use tempfile with atomic move to prevent symlink following and FIFO blocking
+      fd, temp_path = tempfile.mkstemp(dir=str(output_dir), text=True)
+      try:
+        with os.fdopen(fd, 'w', encoding='utf-8') as f:
+          json.dump(record, f, indent=2)
+        shutil.move(temp_path, str(output_file))
+      except Exception:
+        os.unlink(temp_path)
+        raise
     except (OSError, IOError):
       pass
   else:
