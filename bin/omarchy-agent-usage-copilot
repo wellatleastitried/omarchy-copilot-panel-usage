@@ -307,7 +307,20 @@ def main() -> None:
     output_file = output_dir / "copilot.json"
     
     try:
-      # Use tempfile with atomic move to prevent symlink following and FIFO blocking
+      # Validate that output_dir is a regular directory (not FIFO or symlink)
+      if output_dir.is_symlink():
+        raise OSError(f"Output directory is a symlink: {output_dir}")
+      if not output_dir.is_dir():
+        raise OSError(f"Output directory is not a regular directory: {output_dir}")
+      
+      # Validate that output_file is not a FIFO or symlink (if it exists)
+      if output_file.exists() or output_file.is_symlink():
+        if output_file.is_symlink():
+          raise OSError(f"Output file is a symlink: {output_file}")
+        if not output_file.is_file():
+          raise OSError(f"Output file is not a regular file: {output_file}")
+      
+      # Use tempfile with atomic move to prevent FIFO blocking and unsafe overwrites
       fd, temp_path = tempfile.mkstemp(dir=str(output_dir), text=True)
       try:
         with os.fdopen(fd, 'w', encoding='utf-8') as f:
