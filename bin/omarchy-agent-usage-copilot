@@ -304,13 +304,12 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / "copilot.json"
     
-    # Use os.open to prevent symlink following and FIFO blocking
     try:
       fd = os.open(str(output_file), os.O_CREAT | os.O_TRUNC | os.O_WRONLY, 0o644)
       with os.fdopen(fd, 'w', encoding='utf-8') as f:
         json.dump(record, f, indent=2)
     except (OSError, IOError):
-      pass  # Silently skip on permission/symlink/FIFO errors
+      pass
   else:
     print(json.dumps(record, indent=2))
 
