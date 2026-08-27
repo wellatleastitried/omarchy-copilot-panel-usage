@@ -269,7 +269,7 @@ def main() -> None:
     if "No more" in quota.get("displayName", ""):
       usage_label = quota["displayName"]
     else:
-      usage_label = f"AI Credits (Premium Requests {format_count(quota['used'])}/{format_count(quota['total'])} used)"
+      usage_label = f"Premium Requests {format_count(quota['used'])}/{format_count(quota['total'])} used"
     limit_entry = {
       "label": usage_label,
       "title": usage_label,
