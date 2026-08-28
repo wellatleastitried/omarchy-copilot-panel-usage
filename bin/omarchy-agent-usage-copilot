@@ -128,6 +128,8 @@ def fetch_quota(token: str) -> dict[str, Any] | None:
     # and unicode decode failures, HTTPException covers IncompleteRead.
     return None
 
+  if not isinstance(data, dict):
+    return None
   snapshots = data.get("quota_snapshots")
   if not isinstance(snapshots, dict):
     return None
@@ -266,7 +268,7 @@ def read_copilot_stats() -> dict[str, Any]:
         WHERE DATE(created_at, 'localtime') = ?
       """, (today,))
       stats["todaySessions"] = cursor.fetchone()[0] or 0
-  except Exception:
+  except (OSError, sqlite3.Error):
     # A display collector must never crash the panel; fall back to a fresh
     # empty record rather than returning partially populated stats.
     return empty_usage_stats()
