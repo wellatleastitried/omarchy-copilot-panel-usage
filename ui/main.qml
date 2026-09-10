@@ -8,9 +8,13 @@ Item {
   property var manifest: null
   property var shell: null
 
+  // Resolved relative to this file's own location, so it works regardless of
+  // whether the shell stamps manifest.__sourceDir onto the manifest handed to
+  // third-party panel plugins. "ui/main.qml" is this file, so ".." is the
+  // plugin root.
   readonly property string pluginDir: {
-    if (!manifest || !manifest.__sourceDir) return ""
-    return String(manifest.__sourceDir)
+    var url = Qt.resolvedUrl("..")
+    return String(url).replace(/^file:\/\//, "").replace(/\/$/, "")
   }
 
   readonly property string collectorPath: pluginDir + "/bin/omarchy-agent-usage-copilot"
@@ -70,13 +74,11 @@ Item {
   Process {
     id: collectorProcess
 
-    onRunningChanged: {
-      if (running) return
+    onExited: function(exitCode) {
       controller.isCollecting = false
       if (exitCode !== 0 || stderr.text.trim()) {
         console.warn("copilot-usage", exitCode !== 0 ? "exit " + exitCode : stderr.text.trim())
       }
-      stderr.clear()
     }
 
     stderr: StdioCollector { id: stderr }
