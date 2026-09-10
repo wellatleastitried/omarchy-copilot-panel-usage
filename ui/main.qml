@@ -70,8 +70,7 @@ Item {
   Process {
     id: collectorProcess
 
-    onRunningChanged: {
-      if (running) return
+    onExited: function(exitCode) {
       controller.isCollecting = false
       if (exitCode !== 0 || stderr.text.trim()) {
         console.warn("copilot-usage", exitCode !== 0 ? "exit " + exitCode : stderr.text.trim())
