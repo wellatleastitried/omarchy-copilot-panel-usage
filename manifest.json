@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "wellatleastitried.copilot-panel-usage",
   "name": "Copilot Usage Panel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "wellatleastitried",
   "description": "Display Copilot usage and quota in the agents panel widget.",
   "homepage": "https://github.com/wellatleastitried/omarchy-copilot-panel-usage",
